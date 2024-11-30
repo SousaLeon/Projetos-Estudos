@@ -13,15 +13,33 @@ void main() {
 
 	printf("Informe o tipo de calculo (/, *, -, +): ");
 	scanf(" %c", &operacao);
-	
-	switch(operacao){
 		
-		case:
-			break;
-	}
-	
 	printf("Digite o segundo numero: ");
 	scanf("%d", &Num2);
 	
+	switch(operacao){
+		
+		case '/':
+		case ':':
+			Resultado = Num1 / Num2;
+			printf("O resultado e: %d", Resultado);
+			break;
+			
+		case 'X':
+		case 'x':
+			Resultado = Num1 * Num2;
+			printf("O resultado e: %d", Resultado);
+			break;
+		
+		case '+':
+			Resultado = Num1 + Num2;
+			printf("O resultado e: %d", Resultado);
+			break;
+			
+		case '-':
+			Resultado = Num1 - Num2;
+			printf("O resultado e: %d", Resultado);
+			break;
+	}
 	
 }
