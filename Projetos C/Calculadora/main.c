@@ -55,6 +55,7 @@ void main() {
 	}	
 	printf("\nDeseja realizar outra operacao S/N ?");
 	scanf(" %c", &opcao);
+	
 	if(opcao == 'S' || opcao == 's'){
 		goto Inicio;
 	}
