@@ -5,8 +5,11 @@
 
 void main() {
 	
-	int Num1, Num2, Resultado;
+	int Num1, Num2, Num3, Resultado;
+	Num3 = 0;
 	char operacao, opcao;
+	
+	printf(" %d", Resultado);
 	
 	Inicio: 
 	system("cls"); 
@@ -20,28 +23,46 @@ void main() {
 	printf("Digite o segundo numero: ");
 	scanf(" %d", &Num2);
 	
+	Verificacao:
+	
 	switch(operacao){
 		
 		case '/':
 		case ':':
-			Resultado = Num1 / Num2;
-			printf("O resultado e: %d", Resultado);
+			if(Num3 == 0){
+				Resultado = Num1 / Num2;
+			}	
+			else{
+				Resultado = Num1 / Num2 / Num3;
+			}		
 			break;
 			
 		case 'X':
 		case 'x':
-			Resultado = Num1 * Num2;
-			printf("O resultado e: %d", Resultado);
+			if(Num3 == 0){
+				Resultado = Num1 * Num2;
+			}
+			else{
+				Resultado = Num1 * Num2 * Num3;
+			}
 			break;
 		
 		case '+':
-			Resultado = Num1 + Num2;
-			printf("O resultado e: %d", Resultado);
+			if(Num3 == 0){
+				Resultado = Num1 + Num2;
+			}
+			else{
+				Resultado = Num1 + Num2 + Num3;
+			}
 			break;
 			
 		case '-':
-			Resultado = Num1 - Num2;
-			printf("O resultado e: %d", Resultado);
+			if(Num3 == 0){
+				Resultado = Num1 - Num2;
+			}
+			else{
+				Resultado = Num1 - Num2 - Num3;
+			}
 			break;
 			
 		default:
@@ -53,6 +74,23 @@ void main() {
 				goto Inicio;
 			}
 	}	
+	
+	printf("Deseja continuar calculando com este resultado S/N ? ");
+	scanf(" %c", &opcao);
+	
+	if(opcao == 'S' || opcao == 's'){
+		
+		printf("Informe o valor: ");
+		scanf(" %d", &Num3);
+		
+		printf("Informe o tipo de calculo: ");
+		scanf(" %c", &opcao);
+		goto Verificacao;		
+		
+	}else{
+		printf("O resultado e: %d", Resultado);
+	}
+	
 	printf("\nDeseja realizar outra operacao S/N ?");
 	scanf(" %c", &opcao);
 	
