@@ -6,9 +6,9 @@ public class Player_2_Settings : MonoBehaviour
 {
     public float Velocity;
 
-    private Rigidbody2D rig;
+    Rigidbody2D rig;
 
-    void Start()
+    void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
     }
@@ -18,7 +18,7 @@ public class Player_2_Settings : MonoBehaviour
     }
     void Movement()
     {
-        if (!Stadium_Field_UI.SF_UI.EndGame)
+        if (!UI_Controller._Controller.EndGame)
         {
             transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3.2f, 3.2f));
 
@@ -26,7 +26,7 @@ public class Player_2_Settings : MonoBehaviour
             rig.velocity = new Vector2(rig.velocity.x, movVertical * Velocity);
         }
 
-        if (Stadium_Field_UI.SF_UI.EndGame)
+        if (UI_Controller._Controller.EndGame)
         {
             rig.velocity = Vector2.zero;
             transform.position = new Vector2(7, 0);
