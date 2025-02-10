@@ -1,0 +1,9 @@
+Melhorias/Adições a serem feitas futuramente:
+
+ - Permitir o jogador visualizar um HighScore
+ - Inimigos, ao serem eliminados, aumentarem o HighScore
+ - Melhorar a UI
+ - Adicionar mais modos
+ - Adicionar uma melhor forma de observar a vida das coisas(Jogador, Inimigo e Proteção)
+ - Adicionar Configurações
+ - Adicionar a espaço nave
