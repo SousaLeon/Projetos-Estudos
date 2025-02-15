@@ -1,0 +1,4 @@
+- Adicionar vida ao jogador, fazer diminuir quando a bola bater no final o mapa e após o jogador "Perder/Game Over"
+- Novos modos
+- Adicionar funções na tela Configurações
+- Mostrar o Score mais alto

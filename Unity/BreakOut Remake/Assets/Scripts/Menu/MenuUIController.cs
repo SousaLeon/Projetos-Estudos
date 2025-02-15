@@ -20,7 +20,7 @@ public class MenuUIController : MonoBehaviour
     }
     public void ExitGame()
     {
-        //Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 }
