@@ -22,10 +22,15 @@ namespace DB_Cadastro
         {
             try
             {
+                if ((TxtNomeLogin.Text == "" || txtSenha.Text == "") || (TxtNomeLogin.Text == "" & txtSenha.Text == ""))
+                {
+                    MessageBox.Show("Não é possível acessar sem todas as informações de login! ", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 using (MySqlConnection ConnectionSQL = new MySqlConnection(DB_Variaveis.StringConnection))
                 {
                     ConnectionSQL.Open();
-
                     string Query = "SELECT SENHA FROM LOGIN WHERE USUARIO = @Usuario";
 
                     using (MySqlCommand CommandSQL = new MySqlCommand(Query, ConnectionSQL))

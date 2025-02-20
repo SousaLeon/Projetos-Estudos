@@ -273,23 +273,23 @@ namespace DB_Cadastro
                 {
                     ConnectionSQL.Open();
 
-                    string QuerySenha = "SELECT COUNT(*) FROM LOGIN WHERE SENHA = @Senha";
-                    using (MySqlCommand CommandSQL = new MySqlCommand(QuerySenha, ConnectionSQL))
-                    {
-                        CommandSQL.Parameters.AddWithValue("@Senha", txtLoginSenha.Text);
-                        int userExists = Convert.ToInt32(CommandSQL.ExecuteScalar());
+                    //string QuerySenha = "SELECT COUNT(*) FROM LOGIN WHERE SENHA = @Senha";
+                    //using (MySqlCommand CommandSQL = new MySqlCommand(QuerySenha, ConnectionSQL))
+                    //{
+                    //    CommandSQL.Parameters.AddWithValue("@Senha", txtLoginSenha.Text);
+                    //    int userExists = Convert.ToInt32(CommandSQL.ExecuteScalar());
 
-                        if (userExists > 0)
-                        {
-                            MessageBox.Show("Não se pode haver duas senhas iguais para usuários!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return; // Sai da função
-                        }
-                        if (txtLoginSenha.Text == "")
-                        {
-                            MessageBox.Show("Necessário informar a senha! ", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }
-                    }
+                    //    if (userExists > 0)
+                    //    {
+                    //        MessageBox.Show("Não se pode haver duas senhas iguais para usuários!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        return; // Sai da função
+                    //    }
+                    //    if (txtLoginSenha.Text == "")
+                    //    {
+                    //        MessageBox.Show("Necessário informar a senha! ", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        return;
+                    //    }
+                    //}
                     
                     string QueryUpdatePessoas = "UPDATE PESSOAS SET NOME = @NomePessoa, EMAIL = @EmailPessoa, NOMELOGIN = @NomeLogin WHERE NOMELOGIN = @SelectedItem";
                     string QueryUpdateLogin = "UPDATE LOGIN SET USUARIO = @UserNome, SENHA = @Password WHERE USUARIO = @SelectedItem";

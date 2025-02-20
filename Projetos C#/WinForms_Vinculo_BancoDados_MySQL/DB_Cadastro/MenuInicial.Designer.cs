@@ -53,8 +53,9 @@
             this.Panel.Controls.Add(this.lblUsers);
             this.Panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel.Location = new System.Drawing.Point(0, 0);
+            this.Panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(180, 461);
+            this.Panel.Size = new System.Drawing.Size(240, 567);
             this.Panel.TabIndex = 0;
             // 
             // listUsers
@@ -65,9 +66,10 @@
             this.listUsers.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.listUsers.FormattingEnabled = true;
             this.listUsers.ItemHeight = 16;
-            this.listUsers.Location = new System.Drawing.Point(15, 37);
+            this.listUsers.Location = new System.Drawing.Point(20, 46);
+            this.listUsers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listUsers.Name = "listUsers";
-            this.listUsers.Size = new System.Drawing.Size(148, 400);
+            this.listUsers.Size = new System.Drawing.Size(197, 480);
             this.listUsers.Sorted = true;
             this.listUsers.TabIndex = 1;
             this.listUsers.SelectedIndexChanged += new System.EventHandler(this.listUsers_SelectedIndexChanged);
@@ -76,7 +78,8 @@
             // 
             this.lblUsers.AutoSize = true;
             this.lblUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsers.Location = new System.Drawing.Point(12, 9);
+            this.lblUsers.Location = new System.Drawing.Point(16, 11);
+            this.lblUsers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsers.Name = "lblUsers";
             this.lblUsers.Size = new System.Drawing.Size(151, 16);
             this.lblUsers.TabIndex = 0;
@@ -86,7 +89,8 @@
             // 
             this.lblNomeUser.AutoSize = true;
             this.lblNomeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeUser.Location = new System.Drawing.Point(224, 110);
+            this.lblNomeUser.Location = new System.Drawing.Point(299, 135);
+            this.lblNomeUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeUser.Name = "lblNomeUser";
             this.lblNomeUser.Size = new System.Drawing.Size(160, 25);
             this.lblNomeUser.TabIndex = 1;
@@ -94,17 +98,19 @@
             // 
             // txtNomeUser
             // 
-            this.txtNomeUser.Location = new System.Drawing.Point(405, 115);
+            this.txtNomeUser.Location = new System.Drawing.Point(540, 142);
+            this.txtNomeUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNomeUser.MaxLength = 30;
             this.txtNomeUser.Name = "txtNomeUser";
-            this.txtNomeUser.Size = new System.Drawing.Size(317, 20);
+            this.txtNomeUser.Size = new System.Drawing.Size(421, 22);
             this.txtNomeUser.TabIndex = 2;
             // 
             // lblEmailUser
             // 
             this.lblEmailUser.AutoSize = true;
             this.lblEmailUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblEmailUser.Location = new System.Drawing.Point(224, 150);
+            this.lblEmailUser.Location = new System.Drawing.Point(299, 185);
+            this.lblEmailUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailUser.Name = "lblEmailUser";
             this.lblEmailUser.Size = new System.Drawing.Size(158, 25);
             this.lblEmailUser.TabIndex = 3;
@@ -112,17 +118,19 @@
             // 
             // txtEmailUser
             // 
-            this.txtEmailUser.Location = new System.Drawing.Point(405, 156);
+            this.txtEmailUser.Location = new System.Drawing.Point(540, 192);
+            this.txtEmailUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmailUser.MaxLength = 20;
             this.txtEmailUser.Name = "txtEmailUser";
-            this.txtEmailUser.Size = new System.Drawing.Size(317, 20);
+            this.txtEmailUser.Size = new System.Drawing.Size(421, 22);
             this.txtEmailUser.TabIndex = 4;
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(229, 381);
+            this.btnAdicionar.Location = new System.Drawing.Point(305, 469);
+            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
+            this.btnAdicionar.Size = new System.Drawing.Size(100, 28);
             this.btnAdicionar.TabIndex = 5;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
@@ -130,9 +138,10 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(310, 381);
+            this.btnExcluir.Location = new System.Drawing.Point(413, 469);
+            this.btnExcluir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.Size = new System.Drawing.Size(100, 28);
             this.btnExcluir.TabIndex = 6;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -140,9 +149,10 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(391, 381);
+            this.btnEditar.Location = new System.Drawing.Point(521, 469);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.Size = new System.Drawing.Size(100, 28);
             this.btnEditar.TabIndex = 7;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -152,7 +162,8 @@
             // 
             this.lblLoginNome.AutoSize = true;
             this.lblLoginNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblLoginNome.Location = new System.Drawing.Point(224, 37);
+            this.lblLoginNome.Location = new System.Drawing.Point(299, 46);
+            this.lblLoginNome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLoginNome.Name = "lblLoginNome";
             this.lblLoginNome.Size = new System.Drawing.Size(137, 25);
             this.lblLoginNome.TabIndex = 8;
@@ -161,27 +172,31 @@
             // txtLoginNome
             // 
             this.txtLoginNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoginNome.Location = new System.Drawing.Point(379, 41);
+            this.txtLoginNome.Location = new System.Drawing.Point(505, 50);
+            this.txtLoginNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLoginNome.MaxLength = 30;
             this.txtLoginNome.Name = "txtLoginNome";
-            this.txtLoginNome.Size = new System.Drawing.Size(120, 22);
+            this.txtLoginNome.Size = new System.Drawing.Size(159, 22);
             this.txtLoginNome.TabIndex = 9;
             // 
             // txtLoginSenha
             // 
             this.txtLoginSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoginSenha.Location = new System.Drawing.Point(379, 66);
+            this.txtLoginSenha.Location = new System.Drawing.Point(505, 81);
+            this.txtLoginSenha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLoginSenha.MaxLength = 10;
             this.txtLoginSenha.Name = "txtLoginSenha";
             this.txtLoginSenha.PasswordChar = '*';
-            this.txtLoginSenha.Size = new System.Drawing.Size(120, 22);
+            this.txtLoginSenha.ReadOnly = true;
+            this.txtLoginSenha.Size = new System.Drawing.Size(159, 22);
             this.txtLoginSenha.TabIndex = 11;
             // 
             // lblLoginSenha
             // 
             this.lblLoginSenha.AutoSize = true;
             this.lblLoginSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblLoginSenha.Location = new System.Drawing.Point(224, 66);
+            this.lblLoginSenha.Location = new System.Drawing.Point(299, 81);
+            this.lblLoginSenha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLoginSenha.Name = "lblLoginSenha";
             this.lblLoginSenha.Size = new System.Drawing.Size(144, 25);
             this.lblLoginSenha.TabIndex = 10;
@@ -189,9 +204,10 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(472, 381);
+            this.btnLimpar.Location = new System.Drawing.Point(629, 469);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpar.Size = new System.Drawing.Size(100, 28);
             this.btnLimpar.TabIndex = 12;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -199,10 +215,10 @@
             // 
             // MenuInicial
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(1045, 567);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.txtLoginSenha);
             this.Controls.Add(this.lblLoginSenha);
@@ -216,6 +232,7 @@
             this.Controls.Add(this.txtNomeUser);
             this.Controls.Add(this.lblNomeUser);
             this.Controls.Add(this.Panel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MenuInicial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MenuInicial";
