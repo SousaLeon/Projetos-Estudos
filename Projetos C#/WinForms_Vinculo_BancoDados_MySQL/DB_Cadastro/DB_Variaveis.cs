@@ -9,7 +9,7 @@ namespace DB_Cadastro
 {
     static class DB_Variaveis
     {
-        public static string StringConnection = "server = 192.168.5.129;" +
+        public static string StringConnection = "server =  localhost;" +
         "database = DB_Portfolio;" +
         "user id = Administrador;" +
         "Password = leon@123";

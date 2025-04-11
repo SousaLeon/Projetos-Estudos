@@ -56,9 +56,9 @@ namespace DB_Cadastro
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro! Usuário não encontrado no banco de dados!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro! Usuário não encontrado no banco de dados!" + ex, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
