@@ -12,7 +12,7 @@ namespace Database_Books
 {
     public static class ComandosSQL
     {
-        public static string StrConnection = "Server = 192.168.5.134; Database = BookStation; User id = sa; Password = leon@123;";
+        public static string StrConnection = "Server = localhost; Database = BookStation; User id = sa; Password = leon@123;";
 
         #region Login
         public static string QueryLogin = "select SenhaLogin from Usuario where NomeLogin = @NomeLogin";
