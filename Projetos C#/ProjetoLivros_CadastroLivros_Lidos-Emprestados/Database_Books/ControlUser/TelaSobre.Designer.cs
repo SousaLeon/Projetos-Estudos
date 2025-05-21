@@ -61,7 +61,7 @@
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(383, 35);
             this.lblVersao.TabIndex = 4;
-            this.lblVersao.Text = "Versão do software: 1.0";
+            this.lblVersao.Text = "Versão do software: 2.0";
             // 
             // label1
             // 
