@@ -48,10 +48,15 @@ namespace Database_Books
         {
             CarregarTela(new TelaInicial(this.loginForm));
         }
+        private void btnRelatorios_Click(object sender, EventArgs e)
+        {
+            CarregarTela(new TelaRelatorios());
+        }
 
         private void ScreenBook_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+        
     }
 }

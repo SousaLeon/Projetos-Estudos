@@ -67,6 +67,7 @@
             this.txtValorEmprestimo = new System.Windows.Forms.TextBox();
             this.groupBoxMaisInfoLivro = new System.Windows.Forms.GroupBox();
             this.btnResumoNota = new System.Windows.Forms.Button();
+            this.btnPDFLivro = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBoxInfoDataEmprestimo.SuspendLayout();
@@ -504,6 +505,7 @@
             // 
             // groupBoxMaisInfoLivro
             // 
+            this.groupBoxMaisInfoLivro.Controls.Add(this.btnPDFLivro);
             this.groupBoxMaisInfoLivro.Controls.Add(this.btnResumoNota);
             this.groupBoxMaisInfoLivro.Controls.Add(this.label6);
             this.groupBoxMaisInfoLivro.Controls.Add(this.txtNumeroSeq);
@@ -526,6 +528,16 @@
             this.btnResumoNota.Text = "Resumo/Nota do livro";
             this.btnResumoNota.UseVisualStyleBackColor = true;
             this.btnResumoNota.Click += new System.EventHandler(this.btnResumoNota_Click);
+            // 
+            // btnPDFLivro
+            // 
+            this.btnPDFLivro.Location = new System.Drawing.Point(173, 145);
+            this.btnPDFLivro.Name = "btnPDFLivro";
+            this.btnPDFLivro.Size = new System.Drawing.Size(161, 30);
+            this.btnPDFLivro.TabIndex = 11;
+            this.btnPDFLivro.Text = "Visualizar PDF do livro";
+            this.btnPDFLivro.UseVisualStyleBackColor = true;
+            this.btnPDFLivro.Click += new System.EventHandler(this.btnPDFLivro_Click);
             // 
             // TelaVisualizarLeituraLivros
             // 
@@ -598,5 +610,6 @@
         private System.Windows.Forms.Label lblPessoaEmprestimo;
         private System.Windows.Forms.TextBox txtPessoaEmprestimo;
         private System.Windows.Forms.Button btnResumoNota;
+        private System.Windows.Forms.Button btnPDFLivro;
     }
 }

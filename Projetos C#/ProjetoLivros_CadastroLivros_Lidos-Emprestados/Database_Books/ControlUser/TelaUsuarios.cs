@@ -17,6 +17,7 @@ namespace Database_Books.ControlUser
         {
             InitializeComponent();
             CarregarUsuarios();
+            
         }
 
         void CarregarUsuarios()
@@ -32,6 +33,7 @@ namespace Database_Books.ControlUser
             {
                 GridViewUsuario.Rows.Add(linha.ItemArray);
             }
+            GridViewUsuario.ClearSelection();
         }
 
         private void GridViewUsuario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -96,10 +98,12 @@ namespace Database_Books.ControlUser
             txtNomeLoginUsuario.Text = "";
             txtNomeUsuario.Text = "";
             txtSenhaUsuario.Text = "";
+            txtSenhaUsuario.ReadOnly = false;
             checkBoxUserBloqueado.Checked = false;
             BoxPerguntaCachorro.SelectedIndex = -1;
             BoxPerguntaCidade.SelectedIndex = -1;
             BoxPerguntaObjeto.SelectedIndex = -1;
+            GridViewUsuario.ClearSelection();
         }
 
         private void btnSalvarUsuario_Click(object sender, EventArgs e)
@@ -161,6 +165,9 @@ namespace Database_Books.ControlUser
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
+            string hash = BCrypt.Net.BCrypt.HashPassword(txtSenhaUsuario.Text);
+
+
             if (string.IsNullOrWhiteSpace(txtNomeLoginUsuario.Text) || string.IsNullOrWhiteSpace(txtNomeUsuario.Text) || string.IsNullOrWhiteSpace(txtSenhaUsuario.Text))
             {
                 MessageBox.Show("É necessário que todas as informações estejam preenchidas! ", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -176,7 +183,7 @@ namespace Database_Books.ControlUser
                     {
                         CommandSql.Parameters.AddWithValue("@NomeUsuario", txtNomeUsuario.Text);
                         CommandSql.Parameters.AddWithValue("@NomeLogin", txtNomeLoginUsuario.Text);
-                        CommandSql.Parameters.AddWithValue("SenhaLogin", txtSenhaUsuario.Text);
+                        CommandSql.Parameters.AddWithValue("SenhaLogin", hash);
 
                         if (BoxPerguntaCidade.SelectedIndex >= 0)
                         {

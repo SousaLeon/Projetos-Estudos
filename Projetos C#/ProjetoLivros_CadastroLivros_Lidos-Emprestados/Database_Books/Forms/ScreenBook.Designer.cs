@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScreenBook));
             this.panelBotoesLaterais = new System.Windows.Forms.Panel();
+            this.btnRelatorios = new System.Windows.Forms.Button();
             this.btnSobre = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             // 
             this.panelBotoesLaterais.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panelBotoesLaterais.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelBotoesLaterais.Controls.Add(this.btnRelatorios);
             this.panelBotoesLaterais.Controls.Add(this.btnSobre);
             this.panelBotoesLaterais.Controls.Add(this.btnUsuarios);
             this.panelBotoesLaterais.Controls.Add(this.btnHome);
@@ -57,13 +59,27 @@
             this.panelBotoesLaterais.Size = new System.Drawing.Size(63, 681);
             this.panelBotoesLaterais.TabIndex = 0;
             // 
+            // btnRelatorios
+            // 
+            this.btnRelatorios.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRelatorios.BackgroundImage")));
+            this.btnRelatorios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRelatorios.FlatAppearance.BorderSize = 0;
+            this.btnRelatorios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelatorios.Location = new System.Drawing.Point(5, 309);
+            this.btnRelatorios.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
+            this.btnRelatorios.Name = "btnRelatorios";
+            this.btnRelatorios.Size = new System.Drawing.Size(50, 50);
+            this.btnRelatorios.TabIndex = 5;
+            this.btnRelatorios.UseVisualStyleBackColor = true;
+            this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
+            // 
             // btnSobre
             // 
             this.btnSobre.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSobre.BackgroundImage")));
             this.btnSobre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSobre.FlatAppearance.BorderSize = 0;
             this.btnSobre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSobre.Location = new System.Drawing.Point(5, 395);
+            this.btnSobre.Location = new System.Drawing.Point(5, 433);
             this.btnSobre.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.btnSobre.Name = "btnSobre";
             this.btnSobre.Size = new System.Drawing.Size(50, 50);
@@ -77,7 +93,7 @@
             this.btnUsuarios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUsuarios.FlatAppearance.BorderSize = 0;
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.Location = new System.Drawing.Point(5, 321);
+            this.btnUsuarios.Location = new System.Drawing.Point(5, 371);
             this.btnUsuarios.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(50, 50);
@@ -170,5 +186,6 @@
         private System.Windows.Forms.Button btnLivros;
         private System.Windows.Forms.Button btnCadastrarLivro;
         private System.Windows.Forms.Panel panelTelas;
+        private System.Windows.Forms.Button btnRelatorios;
     }
 }

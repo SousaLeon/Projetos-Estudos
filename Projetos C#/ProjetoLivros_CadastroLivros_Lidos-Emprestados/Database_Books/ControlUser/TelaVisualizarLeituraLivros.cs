@@ -1,10 +1,13 @@
 ﻿using Database_Books.Forms;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,61 +45,44 @@ namespace Database_Books.ControlUser
                             {
                                 txtNomeLivro.Text = ReaderSql.GetString(0);
                                 txtGeneroLivro.Text = ReaderSql.GetString(1);
-                                txtAutorLivro.Text = ReaderSql.GetString(2);
 
-                                if (ReaderSql.GetValue(3) == (object)DBNull.Value)
+                                if (ReaderSql.IsDBNull(2))
+                                {
+                                    txtAutorLivro.Text = "";
+                                }else { txtAutorLivro.Text = ReaderSql.GetString(2); }                                    
+
+                                if (ReaderSql.IsDBNull(3))
                                 {
                                     txtNomeSeq.Text = "";
-                                }
-                                else
-                                {
-                                    txtNomeSeq.Text = ReaderSql.GetString(3);
-                                }
+                                }else{ txtNomeSeq.Text = ReaderSql.GetString(3); }
 
-                                if (ReaderSql.GetValue(4) == (object)DBNull.Value)
+                                if (ReaderSql.IsDBNull(4))
                                 {
                                     txtNumeroSeq.Text = "";
-                                }
-                                else
-                                {
-                                    txtNumeroSeq.Text = ReaderSql.GetString(4);
-                                }
+                                }else{ txtNumeroSeq.Text = ReaderSql.GetString(4); }
+
                                 BoxStatus.SelectedItem = ReaderSql.GetString(5);
 
                                 txtLeitor.Text = ReaderSql.GetString(6);
 
-                                DataFimEstimativa.Value = ReaderSql.GetSqlDateTime(7).Value;
+                                DataFimEstimativa.Value = ReaderSql.GetDateTime(7).Date;
 
                                 if (ReaderSql.IsDBNull(8) && (BoxStatus.SelectedIndex != 1 || BoxStatus.SelectedIndex != 3))
                                 {
                                     DataFimLeitura.Visible = false;
-                                }
-                                else
-                                {
-                                    DataFimLeitura.Value = ReaderSql.GetSqlDateTime(8).Value;
-                                }
+                                }else{ DataFimLeitura.Value = ReaderSql.GetDateTime(8).Date; }
                                 
-                                DataInicioLeitura.Value = ReaderSql.GetSqlDateTime(9).Value;
+                                DataInicioLeitura.Value = ReaderSql.GetDateTime(9).Date;
 
                                 if (ReaderSql.IsDBNull(10))
                                 {
                                     DataDevolucao.Visible = false;
-                                }
-                                else
-                                {
-                                    DataDevolucao.Value = ReaderSql.GetSqlDateTime(10).Value;
-                                }
+                                }else { DataDevolucao.Value = ReaderSql.GetDateTime(10).Date; }
 
                                 if (ReaderSql.IsDBNull(11))
                                 {
                                     DataEmprestimo.Visible = false;
-                                }
-                                else
-                                {
-                                    DataEmprestimo.Value = ReaderSql.GetSqlDateTime(11).Value;
-                                }
-
-                                
+                                }else{ DataEmprestimo.Value = ReaderSql.GetDateTime(11).Date; }
 
                                 if (ReaderSql.IsDBNull(12))
                                 {
@@ -107,11 +93,9 @@ namespace Database_Books.ControlUser
                                 if (ReaderSql.IsDBNull(13))
                                 {
                                     txtValorEmprestimo.Text = "";
-                                }
-                                else
-                                {
+                                }else {
                                     decimal Valor = ReaderSql.GetDecimal(13);
-                                    txtValorEmprestimo.Text = Convert.ToString(Valor);
+                                    txtValorEmprestimo.Text = Convert.ToString(Valor); 
                                 }
                             }
                         }
@@ -221,6 +205,12 @@ namespace Database_Books.ControlUser
                     DataFimLeitura.Visible = false;
                     break;
             }
+        }
+
+        private void btnPDFLivro_Click(object sender, EventArgs e)
+        {
+            VisualizadorPDF visualizadoPDF = new VisualizadorPDF(TL);
+            visualizadoPDF.ShowDialog();
         }
     }
 }

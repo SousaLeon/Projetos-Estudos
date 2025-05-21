@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
+using iTextSharp.text.pdf;
 
 namespace Database_Books.ControlUser
 {
@@ -31,6 +33,7 @@ namespace Database_Books.ControlUser
             int NSeq = 0;
             decimal Valor = 0;
 
+            //trazer informações para cada item
             try
             {
                 using (SqlConnection ConnectionSql = new SqlConnection(ComandosSQL.StrConnection))
@@ -52,33 +55,31 @@ namespace Database_Books.ControlUser
                                 string formato = ReaderSql.GetString(3).Trim();
                                 BoxFormatoVisuCadastro.SelectedItem = formato;
 
-                                if (ReaderSql.GetValue(4) == (object)DBNull.Value)
+                                if (ReaderSql.IsDBNull(4))
                                 {
                                     txtNomeSeqVisuCadastro.Text = "";
-                                }
-                                else
-                                {
+                                }else{
                                     txtNomeSeqVisuCadastro.Text = ReaderSql.GetString(4);
                                 }
 
-                                if (ReaderSql.GetValue(5) == (object)DBNull.Value)
+                                if (ReaderSql.IsDBNull(5))
                                 {
                                     txtNSeqVisuCadastro.Text = "";
-                                }
-                                else
-                                {
+                                }else{
                                     NSeq = ReaderSql.GetInt32(5);
                                     txtNSeqVisuCadastro.Text = Convert.ToString(NSeq);
-                                }                                    
+                                }
 
-                                txtAutorVisuCadastro.Text = ReaderSql.GetString(6);
+                                if (ReaderSql.IsDBNull(6))
+                                {
+                                    txtAutorVisuCadastro.Text = "";
+                                }else { txtAutorVisuCadastro.Text = ReaderSql.GetString(6); }
+                                    
 
-                                if (ReaderSql.GetValue(7) == (object)DBNull.Value)
+                                if (ReaderSql.IsDBNull(7))
                                 {
                                     txtValorLivroVisuCadastro.Text = "";
-                                }
-                                else
-                                {
+                                }else{
                                     Valor = ReaderSql.GetDecimal(7);
                                     txtValorLivroVisuCadastro.Text = Convert.ToString(Valor);
                                 }
@@ -91,6 +92,32 @@ namespace Database_Books.ControlUser
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao tentar conectar com banco de dados para acesso ao sistema! " + ex, "Erro de conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //traz informação de pdf
+            try
+            {
+                using (SqlConnection ConnectionSql = new SqlConnection(ComandosSQL.StrConnection))
+                {
+                    ConnectionSql.Open();
+                    using (SqlCommand CommandSql = new SqlCommand("select cadastrolivroid from arquivospdf where cadastrolivroid = @Id", ConnectionSql))
+                    {
+                        CommandSql.Parameters.AddWithValue("@Id", TCL.IdSelecionado);
+
+                        using (SqlDataReader ReaderSql = CommandSql.ExecuteReader())
+                        {
+                            if (ReaderSql.Read())
+                            {
+                                btnAdicionarPDF.Enabled = false;
+                                lblAdicionarPDF.Text = "Este livro já tem um PDF.";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro inesperado ao tentar carregar o PDF" + ex, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -168,6 +195,12 @@ namespace Database_Books.ControlUser
                 {
                     ConnectionSql.Open();
 
+                    using (SqlCommand CommandSql = new SqlCommand("delete from arquivospdf where CadastroLivroId = @CadastroLivroId", ConnectionSql))
+                    {
+                        CommandSql.Parameters.AddWithValue("@CadastroLivroId", TCL.IdSelecionado);
+                        CommandSql.ExecuteNonQuery();
+                    }
+
                     using (SqlCommand CommandSql = new SqlCommand(ComandosSQL.QueryBuscaCadastroId_LeituraLivros, ConnectionSql))
                     {
                         CommandSql.Parameters.AddWithValue("@CadastroId", IdCadastroLivro);
@@ -209,6 +242,40 @@ namespace Database_Books.ControlUser
                     MessageBox.Show("Erro ao tentar conectar com banco de dados para excluir informação! " + ex, "Erro de conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnAdicionarPDF_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFile = new OpenFileDialog())
+            {
+                openFile.Filter = "Arquivos PDF (*.pdf)|*.pdf";
+
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    byte[] pdfByte = File.ReadAllBytes(openFile.FileName);
+                    string NomeArquivo = Path.GetFileName(openFile.FileName);
+
+                    try
+                    {
+                        using (SqlConnection ConnectionSql = new SqlConnection(ComandosSQL.StrConnection))
+                        using (SqlCommand CommandSql = new SqlCommand("INSERT INTO ArquivosPDF (NomeArquivo, ConteudoPDF, CadastroLivroId) VALUES (@Nome, @Conteudo, @CadastroLivroId)", ConnectionSql))
+                        {
+                            CommandSql.Parameters.AddWithValue("@Nome", NomeArquivo);
+                            CommandSql.Parameters.AddWithValue("@Conteudo", pdfByte);
+                            CommandSql.Parameters.AddWithValue("@CadastroLivroId", TCL.IdSelecionado);
+                            ConnectionSql.Open();
+                            CommandSql.ExecuteNonQuery();
+                            MessageBox.Show("PDF salvo com sucesso!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        btnAdicionarPDF.Enabled = false;
+                        lblAdicionarPDF.Text = "Este livro já tem um PDF.";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro inesperado ao tentar adicionar o PDF." + ex, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }            
         }
     }
 }

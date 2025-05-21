@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace Database_Books
 {
@@ -45,6 +47,8 @@ namespace Database_Books
 
         private void btnIncluirLivro_Click(object sender, EventArgs e)
         {
+            object result_insert_cadastroId = 0;
+            int IdCadastroLivro = 0;
 
             if (string.IsNullOrWhiteSpace(txtNomeLivroCadastro.Text) || string.IsNullOrWhiteSpace(txtGeneroCadastro.Text) || string.IsNullOrWhiteSpace(txtNPaginasCadastro.Text) || comboBoxFormatoCadastro.SelectedIndex == -1)
             {
@@ -77,16 +81,50 @@ namespace Database_Books
                         {
                             CommandSql.Parameters.AddWithValue("@Valor", DBNull.Value);
                         }
-                        CommandSql.ExecuteNonQuery();
-                    }
-                    TCL.BuscarCadastroLivro();
-                    this.Close();
+                        result_insert_cadastroId = CommandSql.ExecuteScalar();
+                        IdCadastroLivro = Convert.ToInt32(result_insert_cadastroId);
+                    }                    
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro em conexão com banco de dados para inclusão de livro. \n" + ex, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            try
+            {
+                var result = MessageBox.Show("Deseja adicionar o PDF deste livro?", "Dúvida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    using (OpenFileDialog openFile = new OpenFileDialog())
+                    {
+                        openFile.Filter = "Arquivos PDF (*.pdf)|*.pdf";                       
+
+                        if (openFile.ShowDialog() == DialogResult.OK)
+                        {
+                            byte[] pdfByte = File.ReadAllBytes(openFile.FileName);
+                            string NomeArquivo = Path.GetFileName(openFile.FileName);
+
+                            using (SqlConnection ConnectionSql = new SqlConnection(ComandosSQL.StrConnection))
+                            using (SqlCommand CommandSql = new SqlCommand("INSERT INTO ArquivosPDF (NomeArquivo, ConteudoPDF, CadastroLivroId) VALUES (@Nome, @Conteudo, @CadastroLivroId)", ConnectionSql))
+                            {
+                                CommandSql.Parameters.AddWithValue("@Nome", NomeArquivo);
+                                CommandSql.Parameters.AddWithValue("@Conteudo", pdfByte);
+                                CommandSql.Parameters.AddWithValue("@CadastroLivroId", IdCadastroLivro);
+                                ConnectionSql.Open();
+                                CommandSql.ExecuteNonQuery();
+                                MessageBox.Show("PDF salvo com sucesso!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }                        
+                    }                    
+                }
+                TCL.BuscarCadastroLivro();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro em conexão com banco de dados para salvar pdf. \n" + ex, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
 
         private void txtNPaginasCadastro_KeyPress(object sender, KeyPressEventArgs e)

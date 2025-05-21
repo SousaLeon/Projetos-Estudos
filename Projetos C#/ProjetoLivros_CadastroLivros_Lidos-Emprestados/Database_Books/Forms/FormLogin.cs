@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Policy;
+
 
 namespace Database_Books
 {
@@ -27,6 +29,9 @@ namespace Database_Books
 
         private void btnAcessar_Click(object sender, EventArgs e)
         {
+            string hash = "";
+            bool valido = false;
+
             if (string.IsNullOrWhiteSpace(txtNomeUser.Text) || string.IsNullOrWhiteSpace(txtSenhaUser.Text))
             {
                 MessageBox.Show("Há informações faltando ser mencionadas, Usuário ou Senha.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -45,7 +50,10 @@ namespace Database_Books
 
                         object resultado = CommandSql.ExecuteScalar();
 
-                        NomeUsuario = resultado.ToString();
+                        if (resultado != null)
+                        {
+                            NomeUsuario = resultado.ToString();
+                        }                        
                     }
 
                     using (SqlCommand CommandSql = new SqlCommand(ComandosSQL.QueryLogin, ConnectionSql))
@@ -54,7 +62,13 @@ namespace Database_Books
 
                         object resultado = CommandSql.ExecuteScalar();
 
-                        if (resultado != null && resultado.ToString() == txtSenhaUser.Text)
+                        if (resultado != null)
+                        {
+                            hash = resultado.ToString();
+                            valido = BCrypt.Net.BCrypt.Verify(txtSenhaUser.Text, hash);
+                        }
+
+                        if (valido)
                         {
                             this.Hide();
                             ScreenBook screenBook = new ScreenBook(this);

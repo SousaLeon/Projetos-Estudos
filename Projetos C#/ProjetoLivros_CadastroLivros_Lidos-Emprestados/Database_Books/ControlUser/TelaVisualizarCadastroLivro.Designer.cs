@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAdicionarPDF = new System.Windows.Forms.Button();
             this.BoxFormatoVisuCadastro = new System.Windows.Forms.ComboBox();
             this.txtNPaginaVisuCadastro = new System.Windows.Forms.TextBox();
             this.txtAutorVisuCadastro = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnFecharVisualizaCadastroLivro = new System.Windows.Forms.Button();
             this.btnExcluirCadastroLivro = new System.Windows.Forms.Button();
+            this.lblAdicionarPDF = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +64,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.lblAdicionarPDF);
+            this.panel1.Controls.Add(this.btnAdicionarPDF);
             this.panel1.Controls.Add(this.BoxFormatoVisuCadastro);
             this.panel1.Controls.Add(this.txtNPaginaVisuCadastro);
             this.panel1.Controls.Add(this.txtAutorVisuCadastro);
@@ -78,6 +82,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(638, 584);
             this.panel1.TabIndex = 0;
+            // 
+            // btnAdicionarPDF
+            // 
+            this.btnAdicionarPDF.Location = new System.Drawing.Point(11, 361);
+            this.btnAdicionarPDF.Name = "btnAdicionarPDF";
+            this.btnAdicionarPDF.Size = new System.Drawing.Size(133, 29);
+            this.btnAdicionarPDF.TabIndex = 14;
+            this.btnAdicionarPDF.Text = "Adicionar PDF";
+            this.btnAdicionarPDF.UseVisualStyleBackColor = true;
+            this.btnAdicionarPDF.Click += new System.EventHandler(this.btnAdicionarPDF_Click);
             // 
             // BoxFormatoVisuCadastro
             // 
@@ -326,6 +340,16 @@
             this.btnExcluirCadastroLivro.UseVisualStyleBackColor = true;
             this.btnExcluirCadastroLivro.Click += new System.EventHandler(this.btnExcluirCadastroLivro_Click);
             // 
+            // lblAdicionarPDF
+            // 
+            this.lblAdicionarPDF.AutoSize = true;
+            this.lblAdicionarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdicionarPDF.Location = new System.Drawing.Point(150, 364);
+            this.lblAdicionarPDF.Name = "lblAdicionarPDF";
+            this.lblAdicionarPDF.Size = new System.Drawing.Size(221, 20);
+            this.lblAdicionarPDF.TabIndex = 15;
+            this.lblAdicionarPDF.Text = "Não possui PDF, adicione um!";
+            // 
             // TelaVisualizarCadastroLivro
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -374,5 +398,7 @@
         private System.Windows.Forms.TextBox txtNSeqVisuCadastro;
         private System.Windows.Forms.TextBox txtValorLivroVisuCadastro;
         private System.Windows.Forms.TextBox txtNomeSeqVisuCadastro;
+        private System.Windows.Forms.Button btnAdicionarPDF;
+        private System.Windows.Forms.Label lblAdicionarPDF;
     }
 }
